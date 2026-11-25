@@ -290,7 +290,6 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
-
                     {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
                     <div key={index}> {/* Unique key for each category div */}
                         <h1>
@@ -308,12 +307,24 @@ function ProductList({ onHomeClick }) {
                             {/* Display other plant details like description and cost */}
                             <div className="product-description">{plant.description}</div> {/* Display plant description */}
                             <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
-                            <button
-                                className="product-button"
-                                onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
-                            >
-                                Add to Cart
-                            </button>
+
+                                {addedToCart[plant.name] ? (
+                                    <button
+                                        className="product-button added-to-cart"
+                                        disabled="true"
+                                    >
+                                        Added to Cart
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="product-button"
+                                        onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
+                                    >
+                                        Add to Cart
+                                    </button>
+                                )}
+                            
+
                             </div>
                         ))}
                         </div>
